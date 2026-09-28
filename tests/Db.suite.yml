@@ -1,0 +1,16 @@
+# Самопроверка хелпера TestUserHelper без реальной БД: локальный SQLite-файл,
+# схема таблицы пользователей грузится из дампа перед сьютом.
+
+actor: DbTester
+modules:
+    enabled:
+        - Db:
+            dsn: 'sqlite:tests/_output/stella_test.sqlite'
+            user: ''
+            password: ''
+            dump: tests/Support/Data/user_schema.sql
+            populate: true
+            cleanup: false
+        - Tests\Support\Helper\TestUserHelper:
+            depends: Db
+        - Asserts

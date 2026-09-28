@@ -1,0 +1,39 @@
+{
+    "name": "aqa/stellantis-autocrm-tests",
+    "description": "Автотесты формы авторизации CRM Stella (Codeception)",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": ">=8.1"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "codecept run --skip-group known-issues",
+        "test:ui": "codecept run Acceptance --skip-group known-issues",
+        "test:db": "codecept run Db",
+        "test:api": "codecept run Api",
+        "test:known-issues": "codecept run Acceptance -g known-issues"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "require-dev": {
+        "codeception/codeception": "^5.1",
+        "codeception/module-asserts": "^3.3",
+        "codeception/module-db": "^3.2",
+        "codeception/module-phpbrowser": "^4.1",
+        "codeception/module-rest": "^3.4",
+        "codeception/module-webdriver": "^4.0"
+    },
+    "scripts-descriptions": {
+        "test": "Все сьюты, кроме тестов на известные дефекты",
+        "test:ui": "UI-тесты формы входа на живом стенде (нужен Selenium: docker compose up -d)",
+        "test:db": "Самопроверка хелпера TestUserHelper на локальном SQLite",
+        "test:api": "Пример API-тестов создания пользователя на локальной заглушке",
+        "test:known-issues": "Воспроизведение найденных дефектов (тесты падают, пока дефект не исправлен)"
+    }
+}

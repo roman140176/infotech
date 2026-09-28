@@ -1,0 +1,25 @@
+# Пример API-тестов на создание пользователя.
+# По умолчанию ходит в локальную заглушку (поднимается автоматически),
+# на реальный API: API_URL=https://... API_TOKEN=... vendor/bin/codecept run Api --env real
+
+actor: ApiTester
+modules:
+    enabled:
+        - REST:
+            url: http://127.0.0.1:8089/api/v1
+            depends: PhpBrowser
+            part: Json
+        - Asserts
+extensions:
+    enabled:
+        - Codeception\Extension\RunProcess:
+            0: php -S 127.0.0.1:8089 tests/Support/MockApi/router.php
+            sleep: 1
+
+env:
+    # заглушка при этом всё равно стартует (расширения через env не отключаются), но не используется
+    real:
+        modules:
+            config:
+                REST:
+                    url: '%API_URL%'
