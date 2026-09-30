@@ -11,7 +11,7 @@
 
 ## Запуск
 
-Нужны PHP 8.3+ (расширения `curl`, `dom`, `mbstring`, `pdo_sqlite`), Composer и Docker.
+Нужны PHP >=8.3 (расширения `curl`, `dom`, `mbstring`, `pdo_sqlite`), Composer и Docker.
 
 ```bash
 composer install
